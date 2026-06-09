@@ -4,6 +4,8 @@
   <img src="assets/cobus-greyling.jpg" alt="Cobus Greyling" width="640" />
 </p>
 
+
+
 **Loop engineering is replacing yourself as the person who prompts the agent. You design the system that does it instead.**
 
 A loop is a recursive goal: you define a purpose and the AI iterates (often with sub-agents, verification, and external state) until the goal is complete or the loop decides to hand off to you.

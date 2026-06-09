@@ -24,12 +24,13 @@ Machine-readable index: [registry.yaml](./registry.yaml)
 
 ## How to Use a Pattern
 
-1. Copy the relevant skill(s) from `templates/` into your project (or publish as a plugin).
-2. Copy a starter kit from `starters/` if you want a runnable scaffold.
-3. Set up scheduling (`/loop`, `scheduler_create`, GitHub Action, Codex Automation).
-4. Create the initial state file.
-5. Start the loop — **report-only first** when the pattern supports phased rollout.
-6. Iterate on the loop definition based on what actually happens.
+1. Pick a pattern: [pattern-picker.md](../docs/pattern-picker.md)
+2. Scaffold with `npx @cobusgreyling/loop-init . --pattern <name> --tool grok` or copy from `starters/`
+3. Copy skills from `templates/` if customizing beyond the starter
+4. Set up scheduling (`/loop`, `scheduler_create`, GitHub Action, Codex Automation)
+5. Create the initial state file (or let `loop-init` do it)
+6. Start the loop — **report-only first** when the pattern supports phased rollout
+7. Iterate on the loop definition based on what actually happens
 
 Good loops are boring and reliable. Start with one that runs every few hours or daily before going to sub-minute cadences.
 

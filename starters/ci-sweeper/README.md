@@ -6,8 +6,10 @@ Scaffold for the [CI Sweeper](../../patterns/ci-sweeper.md) loop.
 
 1. Copy skills and state:
    ```bash
+   npx @cobusgreyling/loop-init . --pattern ci-sweeper --tool grok
+   # Or manual:
    mkdir -p .grok/skills
-   cp starters/ci-sweeper/.grok/skills/ci-triage/SKILL.md .grok/skills/ci-triage/SKILL.md
+   cp -r starters/ci-sweeper/.grok/skills/ci-triage .grok/skills/
    cp templates/SKILL.md.minimal-fix .grok/skills/minimal-fix/SKILL.md
    cp templates/SKILL.md.verifier .grok/skills/loop-verifier/SKILL.md
    cp starters/ci-sweeper/ci-sweeper-state.md.example ci-sweeper-state.md

@@ -30,11 +30,13 @@ A loop is a recursive goal: you define a purpose and the AI iterates (often with
 
 | Start here | Description |
 |------------|-------------|
-| [Primitives Matrix](docs/primitives-matrix.md) | Grok vs Claude Code vs Codex — **bookmark this** |
+| [Pattern Picker](docs/pattern-picker.md) | Which loop to run first — **start here if unsure** |
+| [Primitives Matrix](docs/primitives-matrix.md) | Grok vs Claude Code vs Codex — bookmark this |
 | [Loop Design Checklist](docs/loop-design-checklist.md) | Ship readiness rubric |
 | [Patterns](patterns/README.md) | PR babysitter, daily triage, CI sweeper, post-merge |
 | [Starters](starters/) | Clone-and-run kits (Grok, Claude Code, Codex) |
 | [loop-audit](tools/loop-audit/) | Loop Readiness Score CLI — `npx @cobusgreyling/loop-audit` |
+| [loop-init](tools/loop-init/) | Scaffold starters — `npx @cobusgreyling/loop-init` |
 | [Stories](stories/) | Real wins and honest failures |
 
 ## Why This Matters
@@ -81,29 +83,25 @@ flowchart LR
 
 ## Patterns
 
-| Pattern | Cadence | Starter |
-|---------|---------|---------|
-| [PR Babysitter](patterns/pr-babysitter.md) | 5–15m | [starters/pr-babysitter](starters/pr-babysitter/) |
-| [Daily Triage](patterns/daily-triage.md) | 1d–2h | [starters/minimal-loop](starters/minimal-loop/) |
-| [CI Sweeper](patterns/ci-sweeper.md) | 5–15m | [starters/ci-sweeper](starters/ci-sweeper/) |
-| [Post-Merge Cleanup](patterns/post-merge-cleanup.md) | 1d–6h | — |
-| [Dependency Sweeper](patterns/dependency-sweeper.md) | 6h–1d | [starters/dependency-sweeper](starters/dependency-sweeper/) |
+| Pattern | Cadence | Starter | Week 1 | Token cost |
+|---------|---------|---------|--------|------------|
+| [Daily Triage](patterns/daily-triage.md) | 1d–2h | [minimal-loop](starters/minimal-loop/) | **L1** report | Low |
+| [PR Babysitter](patterns/pr-babysitter.md) | 5–15m | [pr-babysitter](starters/pr-babysitter/) | L1 watch | High |
+| [CI Sweeper](patterns/ci-sweeper.md) | 5–15m | [ci-sweeper](starters/ci-sweeper/) | L2 cautious | Very high |
+| [Dependency Sweeper](patterns/dependency-sweeper.md) | 6h–1d | [dependency-sweeper](starters/dependency-sweeper/) | L2 patch-only | Medium |
+| [Post-Merge Cleanup](patterns/post-merge-cleanup.md) | 1d–6h | [post-merge-cleanup](starters/post-merge-cleanup/) | **L1** off-peak | Low |
+
+Not sure which to pick? See [pattern-picker](docs/pattern-picker.md).
 
 Machine-readable index: [patterns/registry.yaml](patterns/registry.yaml)
 
 ## Getting Started (5 minutes)
 
 ```bash
-# 1. Pick a starter for your tool
-# Grok:
-cp -r starters/minimal-loop/.grok/skills/loop-triage .grok/skills/
-# Claude Code:
-cp -r starters/minimal-loop-claude/.claude/skills/loop-triage .claude/skills/
-# Codex:
-cp -r starters/minimal-loop-codex/.codex/skills/loop-triage .codex/skills/
-cp starters/minimal-loop/STATE.md.example STATE.md
+# 1. Scaffold a starter (or copy manually — see starters/)
+npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok
 
-# 2. Audit readiness (no clone required)
+# 2. Audit readiness
 npx @cobusgreyling/loop-audit . --suggest
 
 # 3. See scores climb: empty → L1 → L2
@@ -125,9 +123,13 @@ Phased rollout: **L1 report → L2 assisted fixes → L3 unattended** — see [l
 ## Operating & Safety
 
 - [Failure Modes](docs/failure-modes.md) — incident-style catalog
+- [Anti-Patterns](docs/anti-patterns.md) — design mistakes before production
+- [Multi-Loop Coordination](docs/multi-loop.md) — when loops collide
 - [Operating Loops](docs/operating-loops.md) — cost, logging, when to kill
 - [Safety](docs/safety.md) — denylist, auto-merge, MCP scopes
+- [Security](SECURITY.md) — reporting and unattended automation risks
 - [Concepts](docs/concepts.md) — intent debt, comprehension debt, harness vs loop
+- [MCP Cookbook](examples/mcp/) — connector examples by pattern
 
 ## Caveats
 

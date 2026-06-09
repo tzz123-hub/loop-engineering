@@ -7,8 +7,9 @@ Real-world loop engineering — including failures. Contribute yours via [CONTRI
 | [pr-babysitter-week-one.md](./pr-babysitter-week-one.md) | PR Babysitter | State + attempt limits + verifier |
 | [daily-triage-report-only.md](./daily-triage-report-only.md) | Daily Triage | L1 before L2 |
 | [why-we-killed-ci-sweeper.md](./why-we-killed-ci-sweeper.md) | CI Sweeper | Budget, branch allowlist, kill switch |
-
-New high-value pattern looking for a story: **Dependency Sweeper** (volume + safety boundaries + measurable "time to clean" metrics).
+| [dependency-sweeper-week-one.md](./dependency-sweeper-week-one.md) | Dependency Sweeper | Verifier must match CI install path |
+| [multi-loop-collision.md](./multi-loop-collision.md) | Multi-loop | Branch lock + collision detection |
+| [l1-to-l2-graduation.md](./l1-to-l2-graduation.md) | Daily Triage | Calibration before auto-fix |
 
 **Template for new stories:**
 

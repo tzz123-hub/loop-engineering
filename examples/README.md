@@ -8,6 +8,7 @@ Same patterns, different tools. Skills and state schemas are shared; only schedu
 | Claude Code | [claude-code/](./claude-code/) |
 | Codex App | [codex/](./codex/) |
 | GitHub Actions | [github-actions/](./github-actions/) |
+| MCP connectors | [mcp/](./mcp/) |
 
 Start with [primitives-matrix.md](../docs/primitives-matrix.md) to map capabilities.
 

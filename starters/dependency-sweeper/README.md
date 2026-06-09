@@ -1,44 +1,46 @@
 # Dependency Sweeper Starter
 
-Clone-and-run scaffold for the **Dependency Sweeper** pattern (L2 assisted with strong verifier gates).
-
-Use this when you want the loop to keep your dependency surface clean and free of known high-severity vulnerabilities without you doing the boring patch/minor bumps by hand.
+Clone-and-run scaffold for the **Dependency Sweeper** pattern (L2 assisted, patch-only with strong verifier gates).
 
 ## Quick Start
 
-1. Copy into your project:
+```bash
+npx @cobusgreyling/loop-init . --pattern dependency-sweeper --tool grok
+```
 
-   ```bash
-   cp -r starters/dependency-sweeper/.grok/skills/dependency-triage .grok/skills/   # if you have a custom triage skill
-   cp starters/dependency-sweeper/dependency-sweeper-state.md.example dependency-sweeper-state.md
-   cp starters/dependency-sweeper/LOOP.md.example LOOP.md   # optional
-   ```
+Or manual copy:
 
-2. Customize the state file with your project name and any initial denylist (e.g. your core framework during a big migration).
+```bash
+cp -r starters/dependency-sweeper/.grok/skills/dependency-triage .grok/skills/
+mkdir -p .grok/skills/loop-verifier .grok/skills/minimal-fix
+cp templates/SKILL.md.verifier .grok/skills/loop-verifier/SKILL.md
+cp templates/SKILL.md.minimal-fix .grok/skills/minimal-fix/SKILL.md
+cp starters/dependency-sweeper/dependency-sweeper-state.md.example dependency-sweeper-state.md
+cp starters/dependency-sweeper/LOOP.md .
+```
 
-3. Start (example with Grok):
+Claude Code / Codex: use `--tool claude` or `--tool codex` with `loop-init`.
 
-   ```
-   /loop 6h Run dependency-triage on package manifests and lockfiles. For patch-level or low-risk CVE fixes: create minimal worktree update + verify with tests. Escalate majors, high-sev, and anything on the denylist. Update dependency-sweeper-state.md. Never auto-merge risky changes.
-   ```
+Start (Grok):
 
-4. After a week of good triage quality, wire the minimal-fix + verifier from `templates/`.
-
-5. Run `node tools/loop-audit/dist/cli.js .` regularly.
+```
+/loop 6h Run dependency-triage on package manifests and lockfiles. Patch-only auto-fix in worktree + verifier (npm ci && npm test). Escalate majors, high-sev CVEs, and denylist packages. Update dependency-sweeper-state.md.
+```
 
 ## What's Included
 
 | File | Purpose |
 |------|---------|
-| `dependency-sweeper-state.md.example` | State spine (in-flight updates, human decisions) |
-| `README.md` | This file |
-| (recommended) Add your own `dependency-triage` skill modeled on `templates/SKILL.md.*` + the pattern doc |
+| `dependency-sweeper-state.md.example` | State spine (in-flight updates, denylist) |
+| `.grok/.claude/.codex/skills/dependency-triage/` | Triage skill (all tools) |
+| `.claude/agents/loop-verifier.md` | Checker agent |
+| `.codex/agents/verifier.toml` | Checker subagent |
+| `LOOP.md` | Cadence, gates, budget |
 
 ## Next Steps
 
-- Read the full pattern: [patterns/dependency-sweeper.md](../../patterns/dependency-sweeper.md)
-- [Loop Design Checklist](../../docs/loop-design-checklist.md)
-- Add `.github/workflows` that reacts to Dependabot PRs or scheduled scans (dogfood example in the root of this reference repo)
-- After the loop is stable, consider wiring OSV-Scanner / `npm audit` / Dependabot webhooks as additional discovery sources.
+- [patterns/dependency-sweeper.md](../../patterns/dependency-sweeper.md)
+- [docs/loop-design-checklist.md](../../docs/loop-design-checklist.md)
+- [stories/dependency-sweeper-week-one.md](../../stories/dependency-sweeper-week-one.md)
 
-**Safety note**: This pattern is deliberately biased toward *small safe patches only*. Majors and high-severity items must stay behind an explicit human gate.
+**Safety**: Majors and high-severity breaking fixes stay behind explicit human gates.

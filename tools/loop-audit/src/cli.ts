@@ -68,6 +68,9 @@ try {
     console.log('  # For PR babysitter / CI sweeper patterns, copy the corresponding starter');
     console.log('  # Then run:  loop-audit . --suggest   (again after changes)');
     console.log('');
+    console.log('  # Or scaffold automatically:');
+    console.log('  npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok');
+    console.log('');
     console.log('See docs/loop-design-checklist.md and patterns/ for full guidance.');
   }
 

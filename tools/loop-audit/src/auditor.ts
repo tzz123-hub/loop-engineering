@@ -47,6 +47,8 @@ const LOOP_SKILL_NAMES = [
   'ci-triage',
   'post-merge-scan',
   'dependency-triage',
+  'post-merge-scan',
+  'rebase-and-clean',
 ];
 
 const SAFETY_FILES = ['safety.md', 'docs/safety.md', 'SECURITY.md'];
@@ -152,7 +154,11 @@ export async function auditProject(target: string): Promise<AuditResult> {
   const loopSkills = skillNames.filter((s) => LOOP_SKILL_NAMES.includes(s));
 
   const verifier = skillNames.includes('loop-verifier');
-  const triage = skillNames.includes('loop-triage') || skillNames.includes('pr-review-triage') || skillNames.includes('ci-triage');
+  const triage = skillNames.includes('loop-triage') ||
+    skillNames.includes('pr-review-triage') ||
+    skillNames.includes('ci-triage') ||
+    skillNames.includes('dependency-triage') ||
+    skillNames.includes('post-merge-scan');
 
   let loopMdContent = '';
   if (loopMd) {

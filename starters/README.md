@@ -1,6 +1,11 @@
 # Starters
 
-Clone-and-run scaffolds. Copy into your project — do not submodule the whole repo unless you want the docs too.
+Clone-and-run scaffolds. Copy into your project — or use `loop-init`:
+
+```bash
+npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok
+npx @cobusgreyling/loop-init . -p pr-babysitter -t claude
+```
 
 ## Daily Triage (L1 report-only)
 
@@ -10,23 +15,18 @@ Clone-and-run scaffolds. Copy into your project — do not submodule the whole r
 | [minimal-loop-claude](./minimal-loop-claude/) | Claude Code | `.claude/skills/` + `.claude/agents/` |
 | [minimal-loop-codex](./minimal-loop-codex/) | Codex | `.codex/skills/` + `.codex/agents/` |
 
-## Other patterns (L2 assisted)
+## L2 assisted patterns
 
-| Starter | Pattern | Readiness |
-|---------|---------|-----------|
-| [pr-babysitter](./pr-babysitter/) | PR Babysitter | L2 assisted |
-| [ci-sweeper](./ci-sweeper/) | CI Sweeper | L2 assisted |
-| [dependency-sweeper](./dependency-sweeper/) | Dependency Sweeper | L2 assisted |
+| Starter | Pattern | Tools | Readiness |
+|---------|---------|-------|-----------|
+| [pr-babysitter](./pr-babysitter/) | PR Babysitter | Grok, Claude, Codex | L2 assisted |
+| [ci-sweeper](./ci-sweeper/) | CI Sweeper | Grok, Claude, Codex | L2 assisted |
+| [dependency-sweeper](./dependency-sweeper/) | Dependency Sweeper | Grok, Claude, Codex | L2 patch-only |
+| [post-merge-cleanup](./post-merge-cleanup/) | Post-Merge Cleanup | Grok, Claude, Codex | L1 → L2 |
 
-After copying, run:
+After copying:
 
 ```bash
 npx @cobusgreyling/loop-audit .
 npx @cobusgreyling/loop-audit . --suggest
-```
-
-Or from a clone:
-
-```bash
-node tools/loop-audit/dist/cli.js .
 ```

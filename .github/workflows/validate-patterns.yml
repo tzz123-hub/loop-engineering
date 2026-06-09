@@ -39,4 +39,11 @@ jobs:
         run: |
           test -f templates/pattern-template.md || (echo "Missing pattern-template.md"; exit 1)
           test -f templates/STATE.md.template || (echo "Missing STATE template"; exit 1)
+          test -f templates/loop-run-log.md.template || (echo "Missing loop-run-log template"; exit 1)
+          test -f templates/loop-budget.md.template || (echo "Missing loop-budget template"; exit 1)
           echo "Templates present ✓"
+
+      - name: Validate registry.yaml schema
+        run: |
+          npm install --no-save yaml@2
+          node scripts/validate-registry.mjs

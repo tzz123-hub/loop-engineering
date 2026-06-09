@@ -71,3 +71,20 @@ See [examples/](../examples/) for the same pattern implemented across tools.
 | Codex | [starters/minimal-loop-codex](../starters/minimal-loop-codex/) |
 
 Audit after copying: `npx @cobusgreyling/loop-audit . --suggest`
+
+Scaffold automatically: `npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok`
+
+## Appendix: Other agent environments (capability mapping)
+
+No dedicated starters yet — map capabilities to the same loop shape:
+
+| Primitive | Cursor | Windsurf | Aider |
+|-----------|--------|----------|-------|
+| Scheduling | Rules + background agents, manual `/loop`-style prompts | Workflows, cascades | `--watch` / scripted sessions |
+| Worktrees | Git worktree per Composer task | Workspace isolation | Git branches |
+| Skills | `.cursor/rules`, `AGENTS.md` | Rules files | `CONVENTIONS.md` / `.aider.conf.yml` |
+| Connectors | MCP in settings | MCP | CLI + git only |
+| Sub-agents | Multi-agent / review mode | Cascade steps | Second terminal reviewer |
+| State | `STATE.md`, `LOOP.md` | Same | Same |
+
+Transfer recipe: copy the tool-agnostic `SKILL.md` + state schema from this repo; map scheduling to your editor's automation surface.

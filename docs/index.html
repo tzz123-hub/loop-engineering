@@ -31,7 +31,7 @@ title: Loop Engineering — Showcase
 </nav>
 
 <header class="hero wrap">
-  <div class="badge">Open source · Tool-agnostic · Production-ready</div>
+  <div class="badge">Open source · Tool-agnostic · Production-ready · L3 dogfood score</div>
   <h1>Design the system<br>that prompts your agents</h1>
   <p class="lead">
     Loop engineering moves you from "I prompt → agent responds → I prompt again"
@@ -148,6 +148,7 @@ title: Loop Engineering — Showcase
         <span>◆ Medium risk</span>
       </div>
       <a class="link" href="https://github.com/cobusgreyling/loop-engineering/blob/main/patterns/pr-babysitter.md">Read pattern →</a>
+      <a class="link" href="https://github.com/cobusgreyling/loop-engineering/tree/main/starters/pr-babysitter" style="margin-left:12px">Starter →</a>
     </article>
     <article class="pattern-card">
       <span class="tag">Start here</span>
@@ -158,6 +159,7 @@ title: Loop Engineering — Showcase
         <span>◆ Low risk</span>
       </div>
       <a class="link" href="https://github.com/cobusgreyling/loop-engineering/blob/main/patterns/daily-triage.md">Read pattern →</a>
+      <a class="link" href="https://github.com/cobusgreyling/loop-engineering/tree/main/starters/minimal-loop" style="margin-left:12px">Starter →</a>
     </article>
     <article class="pattern-card">
       <span class="tag">High frequency</span>
@@ -168,6 +170,7 @@ title: Loop Engineering — Showcase
         <span>◆ Medium risk</span>
       </div>
       <a class="link" href="https://github.com/cobusgreyling/loop-engineering/blob/main/patterns/ci-sweeper.md">Read pattern →</a>
+      <a class="link" href="https://github.com/cobusgreyling/loop-engineering/tree/main/starters/ci-sweeper" style="margin-left:12px">Starter →</a>
     </article>
     <article class="pattern-card">
       <span class="tag">Off-peak</span>
@@ -178,15 +181,27 @@ title: Loop Engineering — Showcase
         <span>◆ Low risk</span>
       </div>
       <a class="link" href="https://github.com/cobusgreyling/loop-engineering/blob/main/patterns/post-merge-cleanup.md">Read pattern →</a>
+      <a class="link" href="https://github.com/cobusgreyling/loop-engineering/tree/main/starters/post-merge-cleanup" style="margin-left:12px">Starter →</a>
+    </article>
+    <article class="pattern-card">
+      <span class="tag">Security</span>
+      <h3>Dependency Sweeper</h3>
+      <p>Patch CVEs and stale deps in worktrees. Majors and denylist stay human-gated.</p>
+      <div class="pattern-meta">
+        <span>⏱ 6h–1d</span>
+        <span>◆ Medium risk</span>
+      </div>
+      <a class="link" href="https://github.com/cobusgreyling/loop-engineering/blob/main/patterns/dependency-sweeper.md">Read pattern →</a>
+      <a class="link" href="https://github.com/cobusgreyling/loop-engineering/tree/main/starters/dependency-sweeper" style="margin-left:12px">Starter →</a>
     </article>
   </div>
   <div class="stats">
     <div class="stat">
-      <div class="num">4</div>
+      <div class="num">5</div>
       <div class="label">Patterns</div>
     </div>
     <div class="stat">
-      <div class="num">3</div>
+      <div class="num">7</div>
       <div class="label">Starter kits</div>
     </div>
     <div class="stat">
@@ -209,12 +224,11 @@ title: Loop Engineering — Showcase
       <div class="code-dots"><span></span><span></span><span></span></div>
       <span>terminal — minimal loop</span>
     </div>
-    <pre><span class="comment"># Copy starter into your project</span>
-cp -r starters/minimal-loop/.grok/skills/loop-triage .grok/skills/
-cp starters/minimal-loop/STATE.md.example STATE.md
+    <pre><span class="comment"># Scaffold starter (or copy manually)</span>
+npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok
 
-<span class="comment"># Score loop readiness</span>
-node tools/loop-audit/dist/cli.js .
+<span class="comment"># Score loop readiness (PRs get audit comments in CI)</span>
+npx @cobusgreyling/loop-audit . --suggest
 
 <span class="comment"># Grok — report only, week one</span>
 <span class="cmd">/loop</span> <span class="flag">1d</span> Run loop-triage. Update STATE.md. No auto-fix.</pre>
@@ -246,6 +260,11 @@ node tools/loop-audit/dist/cli.js .
       <h3>loop-audit CLI</h3>
       <p>Loop Readiness Score 0–100. Know before you ship unattended.</p>
       <a class="link" href="https://github.com/cobusgreyling/loop-engineering/tree/main/tools/loop-audit">Run audit →</a>
+    </article>
+    <article class="pattern-card">
+      <h3>Pattern Picker</h3>
+      <p>CI red? PRs stalling? Morning chaos? Pick the right loop first.</p>
+      <a class="link" href="https://github.com/cobusgreyling/loop-engineering/blob/main/docs/pattern-picker.md">Choose pattern →</a>
     </article>
   </div>
 </section>

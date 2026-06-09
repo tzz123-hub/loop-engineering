@@ -50,8 +50,10 @@ Also add an entry to `patterns/registry.yaml`.
 - Failures are first-class content
 - Tool-agnostic by default; tool-specific in labeled sections
 
-## Questions
+## Community
 
-Open an issue with label `question` or `pattern-request`.
+- **Questions**: open an issue with label `question` or `pattern-request`
+- **Discussions**: enable GitHub Discussions on the repo for pattern Q&A (recommended for maintainers)
+- **Security**: see [SECURITY.md](./SECURITY.md) — do not file public issues for exploitable vulnerabilities
 
 Thank you for helping make this the go-to reference for loop engineering.

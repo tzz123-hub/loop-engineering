@@ -1,0 +1,13 @@
+{
+  "name": "loop-engineering",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:registry": "node scripts/validate-registry.mjs",
+    "test:loop-audit": "cd tools/loop-audit && npm test",
+    "build:tools": "cd tools/loop-audit && npm run build && cd ../loop-init && npm run build"
+  },
+  "devDependencies": {
+    "yaml": "^2.8.0"
+  }
+}

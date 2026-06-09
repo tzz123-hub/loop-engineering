@@ -1,16 +1,16 @@
 # Loop State — loop-engineering reference
 
-Last run: not yet automated (maintainer or daily triage loop updates this)
+Last run: pending first automated run (see `.github/workflows/daily-triage.yml`)
 
 ## High Priority (loop is acting or waiting on human)
 
-- Dogfood L2 on the reference repo itself (STATE, skills, AGENTS.md, audit gate ≥ 58).
-- Publish `@cobusgreyling/loop-audit` to npm for `npx` installs.
+- Publish `@cobusgreyling/loop-audit` and `@cobusgreyling/loop-init` to npm for `npx` installs.
+- Dogfood L2 on the reference repo (STATE, skills, AGENTS.md, audit gate ≥ 58).
 
 ## Watch List
 
-- Add more contributor-submitted failure stories.
-- Expand Claude Code / Codex starters beyond daily triage.
+- Collect contributor failure stories beyond the six in `stories/`.
+- Validate `loop-init` scaffolds on fresh projects across all five patterns.
 
 ## Recent Noise (ignored this run)
 

@@ -13,6 +13,9 @@ patterns:
     state: pr-babysitter-state.md
     phases: [discover, triage, fix, verify, notify]
     human_gates: [security, payments, auth, max-fix-attempts]
+    starter: starters/pr-babysitter
+    week_one_mode: L1
+    token_cost: high
 
   - id: daily-triage
     name: Daily Triage
@@ -25,6 +28,9 @@ patterns:
     state: STATE.md
     phases: [report, act-small-wins, escalate]
     human_gates: [design-decisions, multi-file-refactors]
+    starter: starters/minimal-loop
+    week_one_mode: L1
+    token_cost: low
 
   - id: ci-sweeper
     name: CI Sweeper
@@ -37,6 +43,9 @@ patterns:
     state: ci-sweeper-state.md
     phases: [detect, classify, fix, verify, escalate]
     human_gates: [infra-failures, max-attempts, security-tests]
+    starter: starters/ci-sweeper
+    week_one_mode: L2
+    token_cost: very-high
 
   - id: post-merge-cleanup
     name: Post-Merge Cleanup
@@ -49,6 +58,9 @@ patterns:
     state: post-merge-state.md
     phases: [scan-merges, prioritize, fix-small, ticket-large]
     human_gates: [architectural-debt, feature-flags, large-diffs]
+    starter: starters/post-merge-cleanup
+    week_one_mode: L1
+    token_cost: low
 
   - id: dependency-sweeper
     name: Dependency Sweeper
@@ -61,3 +73,6 @@ patterns:
     state: dependency-sweeper-state.md
     phases: [scan, triage-risk, patch-safe, verify-worktree, escalate-risky]
     human_gates: [major-bumps, high-sev-cve, denylisted-packages, max-attempts]
+    starter: starters/dependency-sweeper
+    week_one_mode: L2
+    token_cost: medium

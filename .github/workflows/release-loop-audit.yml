@@ -1,0 +1,36 @@
+name: Release loop-audit
+
+on:
+  push:
+    tags:
+      - 'loop-audit-v*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  test-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+          cache-dependency-path: tools/loop-audit/package-lock.json
+
+      - name: Install, build, test
+        working-directory: tools/loop-audit
+        run: |
+          npm ci
+          npm run build
+          npm test
+
+      - name: Publish to npm
+        working-directory: tools/loop-audit
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

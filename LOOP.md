@@ -1,71 +1,68 @@
 # LOOP.md — Loop Engineering Reference
 
-This file documents how the **loop-engineering** reference repository itself is (or will be) operated with loop engineering patterns.
+This file documents how the **loop-engineering** reference repository is operated with loop engineering patterns.
 
-The goal of this repo is to be the canonical, copyable, high-signal collection of patterns, starters, and tooling. It should therefore eat its own dogfood aggressively.
+The goal of this repo is to be the canonical, copyable, high-signal collection of patterns, starters, and tooling. It eats its own dogfood aggressively.
 
-## Intended Loops (phased)
+## Active Loops
 
-### Daily Triage (L1 → L2)
-- Cadence: 1d (or 2h during active development)
-- Skill: loop-triage (from `starters/minimal-loop`)
-- State: STATE.md (or this file + issues)
-- Current phase: Report-only. Human reviews the report each day and decides what to action.
+### Daily Triage (L1 — automated + report)
+- Cadence: 1d weekdays (`/.github/workflows/daily-triage.yml`)
+- Skill: `loop-triage` (from `skills/` and `starters/minimal-loop`)
+- State: `STATE.md` (updated by workflow; human reviews weekly issue)
+- Phase: Report-only. Human reviews and decides actions.
 - Handoff: Design decisions, large refactors, new pattern acceptance.
 
-### PR Babysitter (future, L2)
-- Cadence: 10–15m during active hours
-- Uses the `pr-babysitter` starter + worktrees for any suggested fixes.
-- Will live primarily in the GitHub Actions + comments on PRs.
-- Strong verifier + explicit allowlist for auto-merge (very small safe changes only).
+### PR Babysitter (L2 — assisted, manual trigger)
+- Cadence: 10–15m during active hours (maintainer `/loop` or future Action)
+- Starter: `starters/pr-babysitter` (Grok, Claude Code, Codex)
+- Worktrees for suggested fixes; verifier required; no auto-merge by default.
 
-### Dependency Sweeper (L2, just added)
+### Dependency Sweeper (L2 — patch-only)
 - Cadence: 6h–1d
-- New pattern + starter added in this iteration.
-- Focus: patch + low-risk CVE only for the first 30 days.
-- Verifier = full `npm ci && npm test` (or the build that exists) in worktree.
-- Human gate on anything that touches core packages or majors.
+- Starter: `starters/dependency-sweeper`
+- Patch + low-risk CVE only for first 30 days
+- Verifier = full `npm ci && npm test` in worktree
+- Human gate on majors and denylisted packages
 
 ### CI Sweeper / Post-Merge (opportunistic)
-- The `validate-patterns.yml` + `audit.yml` workflows in `.github/workflows/` are the beginning of dogfooding these patterns.
-- Future: a sweeper that reacts to failing validate/audit runs with minimal doc or link fixes.
+- `validate-patterns.yml` + `audit.yml` dogfood pattern validation and readiness scoring
+- `audit.yml` posts loop readiness scores on PRs
+- Future: sweeper reacting to failing validate/audit runs
+
+## Multi-loop coordination
+
+See [docs/multi-loop.md](docs/multi-loop.md). Priority: CI Sweeper → PR Babysitter → Dependency Sweeper → Post-Merge → Daily Triage (report).
 
 ## Worktrees
 
-- Any unattended code-change experiment (dependency sweeper, PR babysitter fixes) runs in an **isolated git worktree** per attempt.
+- Any unattended code-change experiment runs in an **isolated git worktree** per attempt.
 - One worktree per fix; discard after verifier REJECT or human escalation.
-- Starters document worktree usage per tool — see `starters/minimal-loop-claude/LOOP.md` and `starters/minimal-loop-codex/LOOP.md`.
 
 ## Connectors (MCP)
 
-- **MCP not required** for L1 daily triage on this reference repo.
-- Optional: GitHub MCP for issue/PR discovery when moving to L2 PR babysitter.
-- Scope connectors to read + comment until the loop is trusted.
+- Optional for L1 daily triage — see [examples/mcp/](examples/mcp/)
+- GitHub MCP read-only for issue/PR discovery
+- Scope connectors to read + comment until the loop is trusted
 
 ## Safety & Gates (this repo)
 
-- No auto-merge on main for anything except the most trivial dependency patches (and even those are behind allowlist + verifier today).
-- Denylist for this reference: anything touching the showcase HTML/CSS, the core primitives docs, or the audit scoring logic without human review.
-- Live loop state: `STATE.md` at repo root (dogfooded). Starters still ship `.example` files for consumers.
+- No auto-merge on main except trivial dependency patches (allowlist + verifier)
+- Denylist: showcase HTML/CSS, core primitives docs, audit scoring logic without human review
+- Live loop state: `STATE.md` at repo root
 
-## How to run the loops here (for contributors / the maintainer)
-
-See the individual pattern docs and the GitHub Actions.
-
-Quick local check:
+## How to run locally
 
 ```bash
 node tools/loop-audit/dist/cli.js . --suggest
+npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok  # after npm publish
+bash scripts/before-after-demo.sh
 ```
-
-After changes to patterns, starters, or docs, the `validate-patterns` + `audit` workflows will run automatically on PRs.
 
 ## Evolution
 
-We will raise the L level of this repo itself over time and record the journey in `stories/`.
-
-Current target for the reference: solid L2 with excellent observability and zero "I had to hand-hold the loop for an hour" stories.
+Journey recorded in `stories/`. Target: solid L2 with excellent observability.
 
 ---
 
-*This file is both documentation and the seed for the loops that will maintain the reference.*
+*This file is both documentation and the seed for the loops that maintain the reference.*

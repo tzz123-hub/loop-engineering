@@ -5,7 +5,7 @@ Last run: 2026-06-09T13:45:00Z (manual improvement batch)
 ## High Priority (loop is acting or waiting on human)
 
 - Maintain loop readiness score ≥ 58 (current: **100**, level **L3**).
-- Add `NPM_TOKEN` repo secret and publish `@cobusgreyling/loop-audit` + `@cobusgreyling/loop-init` (see [docs/RELEASE.md](docs/RELEASE.md)).
+- `@cobusgreyling/loop-audit@1.3.0` and `@cobusgreyling/loop-init@1.1.0` are live on npm — revoke any tokens pasted in chat and prefer Trusted Publishing for CI.
 
 ## Watch List
 
